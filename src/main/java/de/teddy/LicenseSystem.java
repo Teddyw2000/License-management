@@ -1,7 +1,6 @@
 package de.teddy;
 
 import de.teddy.request.Request;
-import de.teddy.request.impl.StatusRequest;
 import de.teddy.response.Response;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;

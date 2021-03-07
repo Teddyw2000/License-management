@@ -1,5 +1,6 @@
 package de.teddy.response;
 
+import com.google.gson.JsonParser;
 import de.teddy.status.Status;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -12,6 +13,7 @@ import java.io.IOException;
 public class Response {
 
     private String response;
+    private Status status;
 
     public Response(HttpClient httpClient, String url)
     {
@@ -26,6 +28,7 @@ public class Response {
             String content = EntityUtils.toString(entity);
 
             this.response = content;
+            this.status = Status.valueOf(new JsonParser().parse(content).getAsJsonObject().get("status").getAsString());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -37,5 +40,9 @@ public class Response {
 
     public String getResponse() {
         return response;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }
